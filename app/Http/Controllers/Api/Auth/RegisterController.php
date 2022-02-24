@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
-class LoginController extends Controller
+class RegisterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +38,35 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $rules = [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8'
+        ];
+//        $request->validate([
+//            'name' => 'required',
+//            'email' => 'required, email|unique:users',
+//            'password' => 'required, min:8',
+//        ]);
+//
+        $customMessage = [
+            'email.required' => 'email is required',
+            'email.email' => 'email is must be valid',
+            'password.required' => 'password is required',
+        ];
+        $validator = Validator::make($data, $rules, $customMessage);
+        if ($validator->fails()){
+            return response()->json($validator->errors());
+        }
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => Hash::make($request->password),
+        ]);
+        return response()->json(['success'=>'Success']);
     }
 
     /**

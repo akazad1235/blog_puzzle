@@ -13,6 +13,8 @@
 <!-- Favicon -->
 <link href="img/fav.png" rel="shortcut icon" type="image/x-icon"/>
 <!-- Bootstrap Core CSS -->
+
+
 <link href="{{asset('frontend/assets/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
 <!-- Theme CSS -->
@@ -20,13 +22,7 @@
 
 <!-- Custom Fonts -->
 <link href="{{asset('frontend/assets/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
-
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.0/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </head>
 
@@ -92,6 +88,7 @@
 
 <!-- Theme JavaScript -->
 <script src="{{asset('frontend/js/custom.js')}}"></script>
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

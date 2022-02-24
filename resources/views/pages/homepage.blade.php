@@ -1,4 +1,5 @@
 @extends('components.app')
+
 @section('banner')
 <header class="intro-header" style="background-image: url('img/white-image.jpg')">
     <div class="container">
@@ -61,7 +62,21 @@
       <li class="next"> <a href="javascript:void(0)">Older Posts &rarr;</a> </li>
     </ul>
   </div>
-  @section('sidebar')
-        @extends('components.sidebar')
-  @endsection
 @endsection
+@section('sidebar')
+@include('components.sidebar')
+@endsection
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+        axios.post('api/user/register', {
+            firstName: 'Fred',
+            lastName: 'Flintstone'
+        })
+      .then(function (res) {
+            console.log(res.data);
+        })
+        .catch(function (error) {
+        console.log(error);
+    });
+</script>
+

@@ -16,8 +16,8 @@ class ManageBlogController extends Controller
      */
     public function index()
     {
-       $data = BlogPost::orderBy('id', 'desc')->get();
-       return response()->json(['data'=>$data, 'status'=>'success'], 200);
+       $data = BlogPost::orderBy('id', 'desc')->paginate(10);
+       return response()->json(['data'=>$data, 'status'=>'all post data get success'], 200);
     }
 
     /**

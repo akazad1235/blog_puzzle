@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\ManageBlogController;
+use App\Http\Controllers\Api\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,8 @@ Route::middleware('auth:api')->group(function () {
 
 });
 Route::post('/user/blog/post',[ManageBlogController::class,'store'])->middleware('auth:api');
+//for comment & consume post id
+Route::post('/comment/{id}',[CommentController::class,'comment'])->middleware('auth:api');
 
 //filter blog post
 Route::post('/blog/post/filter',[ManageBlogController::class,'filter']);

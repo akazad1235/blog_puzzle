@@ -38,23 +38,21 @@ class ManageBlogController extends Controller
      */
     public function store(Request $request)
     {
-        return auth()->user()->name;
+
         $file =$request->file('blog_image');
         global $newFleName;
         if ($request->hasFile('blog_image')) {
             $fileName = rand(0, 999999999) . '_' . date('Ymdhis') . '_' . rand(100, 999999999) . '.' . $file->getClientOriginalExtension();
             Image::make($file)->resize(200, 200)->save(public_path('frontend/uploads/blog/') . $fileName);
-
             $newFleName = $fileName;
         }
         $blog = new BlogPost();
-        $blog->user_id = 23;
+        $blog->user_id = auth()->user()->id;
         $blog->title = $request->title;
         $blog->blog_image = $newFleName;
-        $blog->multiple_blog_image ='ksdjflsdjflksdfl';
+        $blog->multiple_blog_image ='null';
         $blog->description = $request->description;
         $blog->save();
-
         return response()->json(['scucess'=>'blog post has been success']);
 
     }

@@ -101,6 +101,22 @@ class ManageBlogController extends Controller
     {
         //
     }
+
+    /**
+     * all blog post filer in title, publish date with author
+     * @param Request $request
+     *
+     */
+    public function filter(Request $request){
+       // return $request->all();
+        $name = $request->name;
+       return BlogPost::where('title', 'like', '%'.$request->title.'%')
+       ->with('user')->orWhereHas('user', function ($q) use($name){
+           $q->where('name','like', '%'.$name.'%');
+           })->get();
+    }
+
+
     public function logout(Request $request){
         $accessToken = $request->user()->token();
         $accessToken->revoke();

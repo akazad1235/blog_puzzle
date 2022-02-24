@@ -28,6 +28,9 @@ Route::middleware('auth:api')->group(function () {
 
 });
 Route::post('/user/blog/post',[ManageBlogController::class,'store'])->middleware('auth:api');
+
+//filter blog post
+Route::post('/blog/post/filter',[ManageBlogController::class,'filter']);
 Route::post('/user/logout',[ManageBlogController::class,'logout'])->middleware('auth:api');
 
 

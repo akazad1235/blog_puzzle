@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +20,7 @@ Route::get('/', function () {
     return view('pages.homepage');
 });
 Route::get('/register', [BlogController::class, 'register'])->name('register');
+Route::get('/login', [BlogController::class, 'login'])->name('login');
+Route::get('/user/dashboard', [UserController::class, 'userDashboard'])->name('login');
+
+

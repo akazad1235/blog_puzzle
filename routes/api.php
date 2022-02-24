@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\ManageBlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +17,25 @@ use App\Http\Controllers\Api\Auth\LoginController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    //return auth()->user()->id;
+
+
+
 });
+Route::middleware('auth:api')->group(function () {
+
+
+});
+Route::post('/user/blog/post',[ManageBlogController::class,'store'])->middleware('auth:api');
+Route::post('/user/logout',[ManageBlogController::class,'logout'])->middleware('auth:api');
+
+
 Route::post('/user/register',[RegisterController::class,'store']);
 Route::post('/user/login',[LoginController::class,'userLogin']);
+
+
+Route::get('/all/blog/post',[ManageBlogController::class,'index']);
+
+
 

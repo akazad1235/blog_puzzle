@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\Validator;
 class LoginController extends Controller
 {
 public function userLogin(Request $request){
-$user = User::where('email', 'akazad914@gmail.com')->first();
-  return response()->json($user->createToken('Token Name')->accessToken);
+
      $data = $request->all();
     $rules = [
         'email' => 'required|exists:users',
@@ -31,14 +30,19 @@ $user = User::where('email', 'akazad914@gmail.com')->first();
     }
 
     if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password])){
-        $user = User::where('email', $request->email)->first();
-        $access_token = $user->createToken($request->email)->accessToken;
-       // User::where('email', $request->email)->update(['token', $access_token]);
 
+        $user = User::where('email', $request->email)->first();
+
+        $access_token = $user->createToken($request->email)->accessToken;
+        $user->token = $access_token;
+        $user->save();
         return response()->json(['success'=>'users has been successfully Login', 'accessToken'=>$access_token], 201);
     }else{
         return response()->json(['success'=>'Ops! Something Wrong'], 422);
     }
+
+
+
 
 }
 }

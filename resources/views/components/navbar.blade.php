@@ -20,6 +20,7 @@
           <li> <a href="about.html">About Us</a> </li>
           <li> <a href="single-post.html">Single Post</a> </li>
           <li> <a href="{{route('register')}}">Register</a> </li>
+          <li> <a href="{{route('login')}}">Login</a> </li>
         </ul>
       </div>
       <!-- /.Menu ends -->

@@ -32,4 +32,14 @@ class CommentController extends Controller
        ]);
         return response()->json(['message'=>'successfully added your comment'], 200);
     }
+    public function reply(Request $request, $id){
+       $getComment =Comment::find($id);
+       Comment::create([
+           'user_id'=>auth()->user()->id,
+           'blog_post_id' => $getComment->blog_post_id,
+           'parent_id' => $getComment->id,
+           'comment' =>$request->reply
+       ]);
+
+    }
 }

@@ -31,6 +31,8 @@ Route::middleware('auth:api')->group(function () {
 Route::post('/user/blog/post',[ManageBlogController::class,'store'])->middleware('auth:api');
 //for comment & consume post id
 Route::post('/comment/{id}',[CommentController::class,'comment'])->middleware('auth:api');
+//for comment replay & consume comment id
+Route::post('/comment/reply/{id}',[CommentController::class,'reply'])->middleware('auth:api');
 
 //filter blog post
 Route::post('/blog/post/filter',[ManageBlogController::class,'filter']);
